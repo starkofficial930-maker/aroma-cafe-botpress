@@ -4,137 +4,957 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aroma de Café | AI Assistant</title>
-  <meta name="description" content="Welcome to Aroma de Café. Chat with our assistant for menu, restaurant and delivery enquiries.">
+  <meta name="theme-color" content="#fbf7f0">
+
+  <title>Aroma de Café | Good Food, Warm Moments</title>
+
+  <meta name="description" content="Welcome to Aroma de Café in Chapai Nawabganj. Explore our menu, discover our specialties, and ask our café assistant about delivery and more.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #35251d;
-      background: #faf6ef;
+    :root {
+      --cream: #fbf7f0;
+      --cream-dark: #f2e9dc;
+      --white: #fffdf9;
+      --brown: #744426;
+      --brown-dark: #2f1c12;
+      --text: #39291f;
+      --muted: #776c62;
+      --border: #e9ded0;
+      --shadow: 0 12px 35px rgba(68, 42, 22, .07);
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "DM Sans", Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin-inline: auto;
+    }
+
+    /* NAVIGATION */
+
     header {
-      padding: 22px 8%;
-      background: #34231c;
-      color: #fff8ed;
+      background: rgba(255, 253, 249, .96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--brown-dark);
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      font-size: 32px;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -.8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--brown);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 21px;
+      border: 1px solid var(--brown);
+      border-radius: 40px;
+      background: var(--brown);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      background: var(--brown-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brown);
+    }
+
+    .btn-outline:hover {
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--brown-dark);
+      font-size: 28px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 530px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 36px;
+      padding-block: 60px;
+    }
+
+    .eyebrow {
+      color: var(--brown);
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(43px, 5.6vw, 72px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      color: var(--brown-dark);
+      margin: 18px 0;
+    }
+
+    .hero h1 span {
+      color: var(--brown);
+    }
+
+    .hero-description {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 27px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .hero-image {
+      height: 410px;
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 48% 48% 18px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .floating-note {
+      position: absolute;
+      left: -22px;
+      bottom: 28px;
+      padding: 15px 20px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+    }
+
+    .floating-note strong {
+      display: block;
+      color: var(--brown);
+      font-size: 16px;
+    }
+
+    /* QUICK OPTIONS */
+
+    .quick-section {
+      background: var(--white);
+      border-block: 1px solid var(--border);
+      padding: 55px 0 60px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(29px, 4vw, 42px);
+      color: var(--brown-dark);
+      line-height: 1.25;
+      margin-top: 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+
+    .option-card {
+      background: var(--cream);
+      border: 1px solid transparent;
+      border-radius: 16px;
+      padding: 24px 12px;
+      text-align: center;
+      transition: .25s ease;
+    }
+
+    .option-card:hover {
+      border-color: #d5b99b;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .option-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      margin: 0 auto 13px;
+      background: #ead9c4;
+      font-size: 24px;
+    }
+
+    .option-card:nth-child(2) .option-icon {
+      background: #f6e6b6;
+    }
+
+    .option-card:nth-child(3) .option-icon {
+      background: #f2d0c4;
+    }
+
+    .option-card:nth-child(4) .option-icon {
+      background: #d9d2e9;
+    }
+
+    .option-card:nth-child(5) .option-icon {
+      background: #cfe2e8;
+    }
+
+    .option-card h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .option-card p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .option-arrow {
+      display: inline-block;
+      color: var(--brown);
+      margin-top: 12px;
+      font-size: 19px;
+    }
+
+    /* MENU */
+
+    .menu-section {
+      padding-block: 78px;
+    }
+
+    .menu-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.7fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .menu-intro h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.2;
+      margin: 12px 0 16px;
+      color: var(--brown-dark);
+    }
+
+    .menu-intro p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .food-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--white);
+      transition: .25s;
+    }
+
+    .food-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .food-card img {
+      width: 100%;
+      height: 165px;
+      object-fit: cover;
+    }
+
+    .food-info {
+      padding: 15px;
+    }
+
+    .food-label {
+      display: inline-block;
+      background: var(--cream-dark);
+      color: var(--brown);
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .food-info h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 17px;
+      margin: 7px 0 4px;
+    }
+
+    .food-info p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ABOUT */
+
+    .about-section {
+      background: var(--cream-dark);
+      padding-block: 72px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .about-copy h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+      margin: 12px 0 17px;
+      color: var(--brown-dark);
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .about-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin: 22px 0;
+    }
+
+    .about-point {
+      padding: 13px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.65);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      padding-block: 75px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      padding: 25px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .contact-card .option-icon {
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .contact-card a {
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    /* CHAT CTA */
+
+    .chat-banner {
+      padding: 43px 25px;
+      margin-bottom: 70px;
+      border-radius: 20px;
+      background: var(--brown-dark);
+      color: white;
+      text-align: center;
+    }
+
+    .chat-banner h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(27px, 4vw, 39px);
+      margin-bottom: 10px;
+    }
+
+    .chat-banner p {
+      color: #e0d2c4;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .chat-banner .btn {
+      background: var(--cream);
+      color: var(--brown-dark);
+      border-color: var(--cream);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0 20px;
+      background: #efe4d6;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-main {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 20px;
     }
 
-    .logo {
-      font-size: 23px;
-      font-weight: bold;
-    }
-
-    header span {
-      font-size: 13px;
-      color: #e7d1b7;
-    }
-
-    .hero {
-      min-height: 78vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 70px 20px;
-      background:
-        linear-gradient(135deg, #f2e3cf, #fcf8f1);
-    }
-
-    .content {
-      max-width: 700px;
-    }
-
-    .tag {
-      color: #8b5b35;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .footer-description {
+      color: var(--muted);
       font-size: 12px;
-      font-weight: bold;
+      margin-top: 7px;
     }
 
-    h1 {
-      font-family: Georgia, serif;
-      font-size: clamp(38px, 7vw, 65px);
-      margin: 20px 0;
-      line-height: 1.1;
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    p {
-      color: #6d5b4e;
-      line-height: 1.8;
-      font-size: 17px;
+    .footer-links a:hover {
+      color: var(--brown);
     }
 
-    .chat-note {
-      margin: 30px auto 0;
-      padding: 17px 22px;
-      border: 1px solid #dfc9ae;
-      border-radius: 12px;
-      max-width: 440px;
-      background: rgba(255,255,255,0.65);
-    }
-
-    .chat-note strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .chat-note p {
-      font-size: 14px;
-      margin: 0;
-    }
-
-    footer {
+    .copyright {
       text-align: center;
-      padding: 24px;
-      background: #34231c;
-      color: #e7d1b7;
-      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid #dfd1c0;
+      margin-top: 25px;
+      padding-top: 18px;
+      font-size: 11px;
+    }
+
+    /* RESPONSIVE DESIGN */
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 14px; }
+      .brand-name { font-size: 21px; }
+      .options-grid { grid-template-columns: repeat(3, 1fr); }
+      .menu-layout { grid-template-columns: 1fr; }
+      .menu-intro { max-width: 520px; }
+      .food-card img { height: 150px; }
+    }
+
+    @media (max-width: 650px) {
+      .navbar { min-height: 68px; }
+      .brand-icon { font-size: 27px; }
+      .brand-name { font-size: 19px; }
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        padding: 22px 5%;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-chat { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-block: 48px;
+        gap: 35px;
+      }
+
+      .hero h1 { font-size: 49px; }
+      .hero-image { height: 310px; }
+      .floating-note { left: 10px; }
+
+      .options-grid { grid-template-columns: repeat(2, 1fr); }
+      .option-card:last-child { grid-column: 1 / -1; }
+
+      .menu-section { padding-block: 55px; }
+      .food-grid { grid-template-columns: 1fr; }
+      .food-card img { height: 220px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .about-image img { height: 260px; }
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .footer-main {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-links { gap: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- HEADER -->
   <header>
-    <div class="logo">Aroma de Café</div>
-    <span>YOUR LOCAL CAFÉ, YOUR FRIENDLY ASSISTANT</span>
+    <div class="container navbar">
+      <a class="brand" href="#home" aria-label="Aroma de Café home">
+        <span class="brand-icon">☕</span>
+        <span class="brand-name">Aroma de Café</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn nav-chat" href="#chat">☏ Chat with Us</a>
+    </div>
   </header>
 
-  <main class="hero">
-    <div class="content">
-      <div class="tag">Welcome to Aroma de Café</div>
+  <main>
+    <!-- HERO -->
+    <section class="container hero" id="home">
+      <div>
+        <div class="eyebrow">Good Food · Great Coffee · Warm Moments</div>
 
-      <h1>Good Food.<br>Warm Moments.</h1>
+        <h1>Aroma de <span>Café</span></h1>
 
-      <p>
-        Welcome! We're here to help with your restaurant
-        questions, menu enquiries and home delivery requests.
-      </p>
+        <p class="hero-description">
+          More than just a café — it's a place for good food,
+          great coffee and meaningful moments. Come in and
+          make your day a little brighter.
+        </p>
 
-      <div class="chat-note">
-        <strong>Need some help?</strong>
-        <p>
-          Open the chat bubble at the bottom of this page
-          to talk to our café assistant.
+        <div class="hero-actions">
+          <a class="btn" href="#chat">☏ Chat with Our Assistant →</a>
+          <a class="btn btn-outline" href="#menu">Explore Menu</a>
+        </div>
+
+        <p class="hero-note">
+          Have a question? Our café assistant is here to help.
         </p>
       </div>
-    </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=85"
+          alt="Warm and welcoming café interior"
+          fetchpriority="high">
+
+        <div class="floating-note">
+          <strong>☕ Your Café, Your Moments</strong>
+          Good food. Good mood.
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK OPTIONS -->
+    <section class="quick-section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">How Can We Help You?</div>
+          <h2>Choose What You Need</h2>
+          <p>Find what you're looking for with just one click.</p>
+        </div>
+
+        <div class="options-grid">
+          <a class="option-card" href="#menu">
+            <div class="option-icon">🍽️</div>
+            <h3>View Menu</h3>
+            <p>Explore our food and beverage options.</p>
+            <span class="option-arrow">→</span>
+          </a>
+
+          <a class="option-card" href="#hours">
+            <div class="option-icon">🕒</div>
+            <h3>Opening Hours</h3>
+            <p>Find our restaurant hours and timings.</p>
+            <span class="option-arrow">→</span>
+          </a>
+
+          <a class="option-card" href="#delivery">
+            <div class="option-icon">🛵</div>
+            <h3>Home Delivery</h3>
+            <p>Learn about delivery and ordering.</p>
+            <span class="option-arrow">→</span>
+          </a>
+
+          <a class="option-card" href="#contact">
+            <div class="option-icon">📍</div>
+            <h3>Find Us</h3>
+            <p>Explore our location and contact details.</p>
+            <span class="option-arrow">→</span>
+          </a>
+
+          <a class="option-card" href="#chat">
+            <div class="option-icon">💬</div>
+            <h3>Ask a Question</h3>
+            <p>Need help? Talk to our assistant.</p>
+            <span class="option-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="container menu-section" id="menu">
+      <div class="menu-layout">
+        <div class="menu-intro">
+          <div class="eyebrow">Made With Love</div>
+          <h2>Fresh Flavors,<br>Every Day</h2>
+
+          <p>
+            From delicious café favorites to satisfying meals,
+            discover a variety of flavors at Aroma de Café.
+          </p>
+
+          <a class="btn btn-outline" href="#chat">
+            Ask About Our Menu →
+          </a>
+        </div>
+
+        <div class="food-grid">
+          <article class="food-card">
+            <img
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80"
+              alt="Freshly prepared coffee"
+              loading="lazy">
+            <div class="food-info">
+              <span class="food-label">Coffee</span>
+              <h3>Fresh Coffee</h3>
+              <p>A comforting café favorite.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img
+              src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
+              alt="A delicious noodle dish"
+              loading="lazy">
+            <div class="food-info">
+              <span class="food-label">Specialty</span>
+              <h3>Chicken Chowmein</h3>
+              <p>A flavorful meal to enjoy.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+              alt="Burger served with fresh ingredients"
+              loading="lazy">
+            <div class="food-info">
+              <span class="food-label">Fast Food</span>
+              <h3>Classic Burger</h3>
+              <p>A satisfying bite for any time.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85"
+            alt="A comfortable café space"
+            loading="lazy">
+        </div>
+
+        <div class="about-copy">
+          <div class="eyebrow">Our Story</div>
+          <h2>A Little Place<br>Full of Flavor</h2>
+
+          <p>
+            Welcome to Aroma de Café in Chapai Nawabganj.
+            We want every visit to feel welcoming, whether
+            you're enjoying a meal, meeting friends or taking
+            a relaxing break.
+          </p>
+
+          <div class="about-points">
+            <div class="about-point">☕ Coffee & Beverages</div>
+            <div class="about-point">🍜 Delicious Meals</div>
+            <div class="about-point">🤎 Friendly Service</div>
+            <div class="about-point">💬 Helpful Assistance</div>
+          </div>
+
+          <a class="btn" href="#contact">Get in Touch →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOURS, DELIVERY AND CONTACT -->
+    <section class="container contact-section" id="contact">
+      <div class="section-heading">
+        <div class="eyebrow">We're Here for You</div>
+        <h2>Plan Your Visit</h2>
+        <p>Choose an option below to find the information you need.</p>
+      </div>
+
+      <div class="contact-grid">
+        <article class="contact-card" id="hours">
+          <div class="option-icon">🕒</div>
+          <h3>Opening Hours</h3>
+          <p>Want to know when we're open?</p>
+          <p>Ask our café assistant for the latest information.</p>
+          <br>
+          <a href="#chat">Ask About Hours →</a>
+        </article>
+
+        <article class="contact-card" id="delivery">
+          <div class="option-icon">🛵</div>
+          <h3>Home Delivery</h3>
+          <p>Interested in ordering your favorites?</p>
+          <p>Ask about delivery availability and details.</p>
+          <br>
+          <a href="#chat">Ask About Delivery →</a>
+        </article>
+
+        <article class="contact-card">
+          <div class="option-icon">📍</div>
+          <h3>Our Location</h3>
+          <p>Aroma de Café</p>
+          <p>Chapai Nawabganj, Bangladesh</p>
+          <br>
+          <a href="#chat">Ask for Directions →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CHATBOT SECTION -->
+    <section class="container" id="chat">
+      <div class="chat-banner">
+        <h2>How Can We Help You Today?</h2>
+        <p>
+          Ask about our menu, opening hours, home delivery
+          or anything related to your visit.
+        </p>
+
+        <!-- Botpress webchat will be connected here -->
+        <a class="btn" href="#home" id="chatButton">
+          💬 Chat with Our Assistant
+        </a>
+
+        <p id="chatStatus" style="font-size:12px;margin-top:14px;margin-bottom:0">
+          Our online assistant will be available here soon.
+        </p>
+      </div>
+    </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    Aroma de Café · Chapai Nawabganj, Bangladesh
+    <div class="container">
+      <div class="footer-main">
+        <div>
+          <a class="brand" href="#home">
+            <span class="brand-icon">☕</span>
+            <span class="brand-name">Aroma de Café</span>
+          </a>
+          <p class="footer-description">
+            Good food. Great coffee. Warm moments.
+          </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#about">About Us</a>
+          <a href="#hours">Opening Hours</a>
+          <a href="#delivery">Delivery</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="copyright">
+        © <span id="year"></span> Aroma de Café. All rights reserved.
+      </div>
+    </div>
   </footer>
 
-  <!-- Botpress chatbot embed code will be added here later -->
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+  <!--
+    BOTpress INTEGRATION:
+    Later, paste the official Botpress Webchat embed code here,
+    immediately before the closing body tag.
+  -->
 
 </body>
 </html>
